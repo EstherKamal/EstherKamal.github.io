@@ -1,62 +1,47 @@
-# EstherKamal.github.io
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Play Audio</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>زر تشغيل الصوت</title>
 <style>
   body {
-    text-align: center;
-    background-color: #f9f9f9;
     font-family: Arial, sans-serif;
-    padding-top: 50px;
+    direction: rtl;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f0f2f5;
   }
-  h1 {
-    color: #333;
-  }
-  .btn {
+  button {
+    background: #4caf50;
     border: none;
     color: white;
     padding: 15px 30px;
-    margin: 10px;
     font-size: 18px;
-    border-radius: 12px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+    transition: background 0.3s ease;
   }
-  .play-btn {
-    background-color: #4CAF50;
-  }
-  .stop-btn {
-    background-color: #f44336;
-  }
-  .btn:hover {
-    transform: scale(1.05);
-    opacity: 0.9;
+  button:hover {
+    background: #45a049;
   }
 </style>
 </head>
 <body>
 
-<h1>🎶 شغل الصوت أو وقفه 🎶</h1>
-
-<button class="btn play-btn" onclick="playAudio()">▶️ تشغيل</button>
-<button class="btn stop-btn" onclick="stopAudio()">⏹ إيقاف</button>
-
-<audio id="myAudio" src="https://github.com/EstherKamal/EstherKamal.github.io/raw/refs/heads/main/whatsApp%20Video%202025-08-10%20at%2017.06.45.mp3"></audio>
+<button id="playBtn">تشغيل الصوت</button>
 
 <script>
-  var audio = document.getElementById("myAudio");
+  const audioUrl = "https://github.com/EstherKamal/EstherKamal.github.io/raw/main/audiofile.mp3";
+  const audio = new Audio(audioUrl);
+  const button = document.getElementById("playBtn");
 
-  function playAudio() {
+  button.addEventListener("click", () => {
     audio.play();
-  }
-
-  function stopAudio() {
-    audio.pause();
-    audio.currentTime = 0; // يرجع الصوت من الأول
-  }
+  });
 </script>
 
 </body>
