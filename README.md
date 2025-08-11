@@ -20,8 +20,6 @@ body{
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   background: linear-gradient(135deg,var(--bg1),var(--bg2));
   color:#222;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
   min-height:100vh;
   display:flex;
   align-items:center;
@@ -32,7 +30,7 @@ body{
 .page{width:100%;max-width:760px}
 
 .header{ text-align:center; margin-bottom:20px;}
-.header h1{margin:0; font-size:26px; letter-spacing:0.2px}
+.header h1{margin:0; font-size:26px;}
 .header .sub{color:var(--muted); margin-top:6px}
 
 .audio-card{
@@ -41,21 +39,17 @@ body{
   padding:18px;
   box-shadow:0 10px 30px rgba(20,20,45,0.08);
   margin-bottom:18px;
-  position:relative;
-  overflow:hidden;
-  border: 1px solid rgba(0,0,0,0.03);
 }
 
 .card-head{display:flex;gap:12px;align-items:center;margin-bottom:12px}
 .ribbon{font-size:28px; background:linear-gradient(90deg,var(--accent),var(--accent-2));
-  width:56px;height:56px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:white; box-shadow:0 6px 18px rgba(111,111,111,0.12)}
+  width:56px;height:56px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;}
 .title{margin:0;font-size:18px}
 .desc{margin:2px 0 0;color:var(--muted);font-size:13px}
 
 .controls{display:flex;gap:10px;margin:10px 0}
 .btn{
   border:0; padding:10px 14px; font-size:15px; border-radius:10px; cursor:pointer;
-  box-shadow:0 6px 14px rgba(99,99,99,0.06);
 }
 .btn.play{ background: linear-gradient(90deg,var(--accent), #ff8fb3); color:white }
 .btn.stop{ background: linear-gradient(90deg,#ff9a9e,#fecfef); color:#7d1b2f }
@@ -77,13 +71,13 @@ body{
     <p class="sub">Click play to listen — made with love 💖</p>
   </header>
 
-  <!-- Audio Card 1 -->
+  <!-- Audio Card -->
   <section class="audio-card">
     <div class="card-head">
       <div class="ribbon">🎀</div>
       <div>
         <h2 class="title">Audio 1 — The Gift</h2>
-        <p class="desc">Your special audio — replace the link below with your GitHub raw URL.</p>
+        <p class="desc">Special audio just for you.</p>
       </div>
     </div>
 
@@ -98,22 +92,21 @@ body{
 
     <div class="times">
       <span id="current-audio1">0:00</span>
-      <span class="slash">/</span>
+      <span>/</span>
       <span id="duration-audio1">0:00</span>
     </div>
 
-    <!-- Replace AUDIO1_URL below with your raw GitHub link -->
-    <audio id="audio1" preload="metadata" src="AUDIO1_URL"></audio>
+    <audio id="audio1" preload="metadata" src="https://raw.githubusercontent.com/EstherKamal/EstherKamal.github.io/main/audiofile.mp3"></audio>
   </section>
 
-  <footer class="footer">More audios? Just copy this card and change the ID + link!</footer>
+  <footer class="footer">More audios? Copy this card and change the ID + link!</footer>
 </main>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const audios = Array.from(document.querySelectorAll('audio'));
-  const playBtns = Array.from(document.querySelectorAll('.btn.play'));
-  const stopBtns = Array.from(document.querySelectorAll('.btn.stop'));
+  const playBtns = document.querySelectorAll('.btn.play');
+  const stopBtns = document.querySelectorAll('.btn.stop');
 
   function stopAllExcept(exceptAudio) {
     audios.forEach(a => {
@@ -127,10 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   playBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      const id = btn.dataset.audio;
-      const audio = document.getElementById(id);
-      if (!audio) return;
-
+      const audio = document.getElementById(btn.dataset.audio);
       if (audio.paused) {
         stopAllExcept(audio);
         audio.play();
@@ -144,13 +134,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   stopBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      const id = btn.dataset.audio;
-      const audio = document.getElementById(id);
-      if (!audio) return;
+      const audio = document.getElementById(btn.dataset.audio);
       audio.pause();
       audio.currentTime = 0;
-      const play = document.querySelector(`.btn.play[data-audio="${id}"]`);
-      if (play) play.textContent = '▶ Play';
+      document.querySelector(`.btn.play[data-audio="${btn.dataset.audio}"]`).textContent = '▶ Play';
       updateUI(audio);
     });
   });
@@ -159,8 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
     audio.addEventListener('timeupdate', () => updateUI(audio));
     audio.addEventListener('loadedmetadata', () => updateUI(audio));
     audio.addEventListener('ended', () => {
-      const play = document.querySelector(`.btn.play[data-audio="${audio.id}"]`);
-      if (play) play.textContent = '▶ Play';
+      document.querySelector(`.btn.play[data-audio="${audio.id}"]`).textContent = '▶ Play';
       audio.currentTime = 0;
       updateUI(audio);
     });
@@ -170,14 +156,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const prog = document.getElementById(`progress-${audio.id}`);
     const curr = document.getElementById(`current-${audio.id}`);
     const dur  = document.getElementById(`duration-${audio.id}`);
-    const pct = (audio.duration && !isNaN(audio.duration)) ? (audio.currentTime / audio.duration) * 100 : 0;
-
+    const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
     if (prog) prog.style.width = pct + '%';
     if (curr) curr.textContent = formatTime(audio.currentTime);
     if (dur)  dur.textContent  = isFinite(audio.duration) ? formatTime(audio.duration) : '0:00';
   }
 
-  function formatTime(s){
+  function formatTime(s) {
     if (!isFinite(s) || s < 0) return '0:00';
     const m = Math.floor(s / 60);
     const sec = Math.floor(s % 60).toString().padStart(2, '0');
