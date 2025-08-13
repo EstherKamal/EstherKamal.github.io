@@ -57,6 +57,7 @@
         display: flex;
         justify-content: center;
         gap: 10px;
+        margin-top: 10px;
     }
     button {
         background-color: #1db954;
@@ -78,6 +79,26 @@
     .stop-btn:hover {
         background-color: #ff6b7b;
     }
+    .progress-container {
+        width: 100%;
+        height: 5px;
+        background: #404040;
+        border-radius: 5px;
+        margin-top: 10px;
+        position: relative;
+    }
+    .progress {
+        height: 100%;
+        width: 0%;
+        background: #1db954;
+        border-radius: 5px;
+        transition: width 0.1s linear;
+    }
+    .time {
+        font-size: 12px;
+        color: #b3b3b3;
+        margin-top: 5px;
+    }
 </style>
 </head>
 <body>
@@ -97,6 +118,9 @@
 
     const audioList = document.getElementById("audioList");
     let currentAudio = null;
+    let currentProgress = null;
+    let currentTimeDisplay = null;
+    let updateInterval = null;
 
     audios.forEach(audioData => {
         const card = document.createElement("div");
@@ -110,6 +134,16 @@
         title.className = "title";
         title.innerText = audioData.title;
 
+        const progressContainer = document.createElement("div");
+        progressContainer.className = "progress-container";
+        const progressBar = document.createElement("div");
+        progressBar.className = "progress";
+        progressContainer.appendChild(progressBar);
+
+        const timeDisplay = document.createElement("div");
+        timeDisplay.className = "time";
+        timeDisplay.innerText = "0:00 / 0:00";
+
         const controls = document.createElement("div");
         controls.className = "controls";
 
@@ -119,9 +153,23 @@
             if (currentAudio) {
                 currentAudio.pause();
                 currentAudio.currentTime = 0;
+                if (currentProgress) currentProgress.style.width = "0%";
+                if (currentTimeDisplay) currentTimeDisplay.innerText = "0:00 / 0:00";
+                clearInterval(updateInterval);
             }
             currentAudio = new Audio(audioData.src);
+            currentProgress = progressBar;
+            currentTimeDisplay = timeDisplay;
             currentAudio.play();
+            currentAudio.onloadedmetadata = () => {
+                timeDisplay.innerText = `0:00 / ${formatTime(currentAudio.duration)}`;
+            };
+            updateInterval = setInterval(() => {
+                if (currentAudio && currentAudio.duration) {
+                    progressBar.style.width = `${(currentAudio.currentTime / currentAudio.duration) * 100}%`;
+                    timeDisplay.innerText = `${formatTime(currentAudio.currentTime)} / ${formatTime(currentAudio.duration)}`;
+                }
+            }, 500);
         };
 
         const stopBtn = document.createElement("button");
@@ -131,6 +179,9 @@
             if (currentAudio) {
                 currentAudio.pause();
                 currentAudio.currentTime = 0;
+                progressBar.style.width = "0%";
+                timeDisplay.innerText = "0:00 / 0:00";
+                clearInterval(updateInterval);
             }
         };
 
@@ -138,9 +189,17 @@
         controls.appendChild(stopBtn);
         card.appendChild(cover);
         card.appendChild(title);
+        card.appendChild(progressContainer);
+        card.appendChild(timeDisplay);
         card.appendChild(controls);
         audioList.appendChild(card);
     });
+
+    function formatTime(seconds) {
+        const m = Math.floor(seconds / 60);
+        const s = Math.floor(seconds % 60);
+        return `${m}:${s < 10 ? "0" : ""}${s}`;
+    }
 </script>
 
 </body>
