@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -102,8 +102,8 @@
 
 <header>
   <div class="wrap">
-    <h1 class="title">Music Library</h1>
-    <p class="subtitle">Clean, modern, and minimal — click play to listen.</p>
+    <h1 class="title">Music</h1>
+    <p class="subtitle"> click play to listen.</p>
   </div>
 </header>
 
@@ -111,7 +111,7 @@
   <section id="library" class="grid" aria-label="Tracks grid"></section>
 </main>
 
-<footer>Built as a modern gift ✨</footer>
+<footer>Enjoy ✨</footer>
 
 <script>
 /* ---------- CONFIG: Your tracks (arranged alphabetically) ---------- */
