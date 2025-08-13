@@ -3,65 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Audio Gift</title>
+<title>Music Player</title>
 <style>
     body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+        background-color: #121212;
+        color: #fff;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        padding: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        background-color: #181818;
         text-align: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+    .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
         padding: 20px;
-        color: #333;
     }
-    h1 {
-        color: white;
-        margin-bottom: 20px;
+    .card {
+        background-color: #181818;
+        border-radius: 12px;
+        padding: 15px;
+        text-align: center;
+        transition: transform 0.3s ease;
     }
-    .audio-card {
-        background: white;
-        border-radius: 15px;
-        padding: 20px;
-        margin: 15px auto;
-        max-width: 350px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    .card:hover {
+        transform: translateY(-5px);
     }
-    .audio-title {
+    .cover {
+        width: 100%;
+        height: 220px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #ff4b5c, #ff7b7b);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 48px;
+        color: rgba(255,255,255,0.8);
+        margin-bottom: 15px;
+    }
+    .title {
         font-size: 18px;
         font-weight: bold;
-        margin-bottom: 15px;
-        color: #ff4b5c;
+        margin-bottom: 10px;
+    }
+    .controls {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
     }
     button {
-        padding: 10px 20px;
-        margin: 5px;
+        background-color: #1db954;
         border: none;
-        border-radius: 10px;
-        font-size: 14px;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+        color: white;
         cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    .play-btn {
-        background-color: #ff4b5c;
-        color: white;
-    }
-    .stop-btn {
-        background-color: #999;
-        color: white;
+        transition: background 0.3s ease;
     }
     button:hover {
-        transform: scale(1.05);
-        opacity: 0.9;
+        background-color: #1ed760;
+    }
+    .stop-btn {
+        background-color: #ff4b5c;
+    }
+    .stop-btn:hover {
+        background-color: #ff6b7b;
     }
 </style>
 </head>
 <body>
 
-<h1>💝 Audio Gift 💝</h1>
+<header>🎵 My Music Collection</header>
 
-<div id="audioList"></div>
+<div class="container" id="audioList"></div>
 
 <script>
     const audios = [
-        { title: "Audio File", src: "https://raw.githubusercontent.com/EstherKamal/EstherKamal.github.io/main/audiofile.mp3" },
+        { title: "505", src: "https://raw.githubusercontent.com/EstherKamal/EstherKamal.github.io/main/audiofile.mp3" },
         { title: "Snowman", src: "https://raw.githubusercontent.com/EstherKamal/EstherKamal.github.io/main/Snowman.mp3" },
         { title: "Anaweyak", src: "https://raw.githubusercontent.com/EstherKamal/EstherKamal.github.io/main/anaweyak.mp3" },
         { title: "Derniere Dance", src: "https://raw.githubusercontent.com/EstherKamal/EstherKamal.github.io/main/derniere%20dance.mp3" },
@@ -73,15 +100,21 @@
 
     audios.forEach(audioData => {
         const card = document.createElement("div");
-        card.className = "audio-card";
-        
+        card.className = "card";
+
+        const cover = document.createElement("div");
+        cover.className = "cover";
+        cover.innerHTML = "🎶";
+
         const title = document.createElement("div");
-        title.className = "audio-title";
+        title.className = "title";
         title.innerText = audioData.title;
-        
+
+        const controls = document.createElement("div");
+        controls.className = "controls";
+
         const playBtn = document.createElement("button");
-        playBtn.className = "play-btn";
-        playBtn.innerText = "▶ Play";
+        playBtn.innerHTML = "▶";
         playBtn.onclick = () => {
             if (currentAudio) {
                 currentAudio.pause();
@@ -90,20 +123,22 @@
             currentAudio = new Audio(audioData.src);
             currentAudio.play();
         };
-        
+
         const stopBtn = document.createElement("button");
         stopBtn.className = "stop-btn";
-        stopBtn.innerText = "⏹ Stop";
+        stopBtn.innerHTML = "⏹";
         stopBtn.onclick = () => {
             if (currentAudio) {
                 currentAudio.pause();
                 currentAudio.currentTime = 0;
             }
         };
-        
+
+        controls.appendChild(playBtn);
+        controls.appendChild(stopBtn);
+        card.appendChild(cover);
         card.appendChild(title);
-        card.appendChild(playBtn);
-        card.appendChild(stopBtn);
+        card.appendChild(controls);
         audioList.appendChild(card);
     });
 </script>
