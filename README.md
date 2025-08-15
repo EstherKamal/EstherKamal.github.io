@@ -1,14 +1,5 @@
-
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <video id="birthdayVideo" controls style="width:100%; margin:20px 0;" autoplay muted>
-  <source src="human music.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-  <video id="birthdayVideo" controls style="width:100%; margin:20px 0;" autoplay muted>
-  <source src="human music.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" /> 
@@ -76,11 +67,11 @@
       <h1 class="title">🎂 Happy Birthday, <span id="name">My Love</span>!</h1>
       <p class="subtitle">wish you the happiest of birthdays 💜</p>
 
-      <!-- Play Music Button -->
-      <button class="btn" id="playBtn">▶ Play Music</button>
-      <audio id="birthdayAudio">
+      <!-- Video Player -->
+      <video id="birthdayVideo" controls style="width:100%; margin:20px 0;" autoplay muted>
         <source src="human music.mp4" type="video/mp4">
-      </audio>
+        Your browser does not support the video tag.
+      </video>
 
       <div class="countdown" id="countdown">
         <div class="box"><div class="num" id="days">--</div><div class="label">Days</div></div>
@@ -93,7 +84,7 @@
     <section class="panel">
       <h2>My Message to You</h2>
       <p>
-        Maybe my words were misunderstood when I said I didn’t want to waste your time but the truth is i appreciate your hard work and your precious time, and I never meant to upset you. I just love talking to you when you’re free and happy, and im always wishing you success in your work, Sorry if there was any confusion, you are very important to me ❤️
+       Maybe my words were misunderstood when I said I didn’t want to waste your time but the truth is i appreciate your hard work and your precious time, and I never meant to upset you. I just love talking to you when you’re free and happy, and im always wishing you success in your work, Sorry if there was any confusion, you are very important to me ❤️ 
       </p>
     </section>
 
@@ -106,11 +97,11 @@
         </article>
         <article class="card">
           <h3>Your Kind Heart</h3>
-          <p> even if sometimes i argue you still wanna save the conversation </p>
+          <p>Yeven if sometimes i argue you still wanna save the conversation</p>
         </article>
         <article class="card">
           <h3>Your Humor</h3>
-          <p>You make conversations light and fun even after a long day and thats rare.</p>
+          <p>You make conversations light and fun even after a long day and thats rare</p>
         </article>
       </div>
     </section>
@@ -125,7 +116,7 @@
     </section>
 
     <footer>
-      Happy birthday EVERYDAY <span id="year"></span>
+     Happy birthday EVERYDAY<span id="year"></span>
     </footer>
   </div>
 
@@ -159,15 +150,6 @@
     }
     updateCountdown();
     setInterval(updateCountdown, 1000);
-
-    // Music Play Button
-    const audio = document.getElementById('birthdayAudio');
-    const playBtn = document.getElementById('playBtn');
-
-    playBtn.addEventListener('click', () => {
-      audio.play();
-      playBtn.style.display = 'none'; // hide button after click
-    });
 
     // Hearts Button
     const heartsBtn = document.getElementById('heartsBtn');
