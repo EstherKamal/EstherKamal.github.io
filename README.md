@@ -65,12 +65,12 @@
   <div class="container">
     <header>
       <h1 class="title">🎂 Happy Birthday, <span id="name">My Love</span>!</h1>
-      <p class="subtitle">A small apology… but huge in my heart 💜</p>
+      <p class="subtitle">wish you the happiest of birthdays 💜</p>
 
       <!-- Play Music Button -->
       <button class="btn" id="playBtn">▶ Play Music</button>
       <audio id="birthdayAudio">
-        <source src="Human Music - instrumental demo - Talk To Trees (1).mp4" type="video/mp4">
+        <source src="human music.mp4" type="video/mp4">
       </audio>
 
       <div class="countdown" id="countdown">
@@ -84,7 +84,7 @@
     <section class="panel">
       <h2>My Message to You</h2>
       <p>
-        Maybe my words were misunderstood when I said I didn’t want to waste your time. The truth is, I appreciate your hard work and your precious time, and I never meant to upset you. I just love talking to you when you’re free and happy, and I’m always wishing you success in your work. Sorry if there was any confusion, you are very important to me ❤️
+        Maybe my words were misunderstood when I said I didn’t want to waste your time but the truth is i appreciate your hard work and your precious time, and I never meant to upset you. I just love talking to you when you’re free and happy, and im always wishing you success in your work, Sorry if there was any confusion, you are very important to me ❤️
       </p>
     </section>
 
@@ -93,15 +93,15 @@
       <div class="grid">
         <article class="card">
           <h3>Your Dedication</h3>
-          <p>You work 10 hours a day and still care enough to talk, which is truly admirable.</p>
+          <p>You work 10 hours a day and still care enough to talk and i appreciate it so much i appreciate your hard work too </p>
         </article>
         <article class="card">
           <h3>Your Kind Heart</h3>
-          <p>Your calm reply: "You’re not wasting my time" – unforgettable.</p>
+          <p> even if sometimes i argue you still wanna save the conversation </p>
         </article>
         <article class="card">
           <h3>Your Humor</h3>
-          <p>You make conversations light and fun even after a long day, and that’s rare.</p>
+          <p>You make conversations light and fun even after a long day and thats rare.</p>
         </article>
       </div>
     </section>
@@ -116,7 +116,7 @@
     </section>
 
     <footer>
-      Made with love 💜 — <span id="year"></span>
+      Happy birthday EVERYDAY <span id="year"></span>
     </footer>
   </div>
 
