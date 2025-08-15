@@ -1,5 +1,14 @@
-<!DOCTYPE html>
+
 <html lang="en" dir="ltr">
+  <video id="birthdayVideo" controls style="width:100%; margin:20px 0;" autoplay muted>
+  <source src="human music.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+  <video id="birthdayVideo" controls style="width:100%; margin:20px 0;" autoplay muted>
+  <source src="human music.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" /> 
