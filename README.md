@@ -67,11 +67,9 @@
       <h1 class="title">🎂 Happy Birthday, <span id="name">My Love</span>!</h1>
       <p class="subtitle">wish you the happiest of birthdays 💜</p>
 
-      <!-- Video Player -->
-      <video id="birthdayVideo" controls style="width:100%; margin:20px 0;" autoplay muted>
-        <source src="human music.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+      <video controls autoplay muted style="width:100%">
+  <source src="human music.mp4" type="video/mp4">
+</video>
 
       <div class="countdown" id="countdown">
         <div class="box"><div class="num" id="days">--</div><div class="label">Days</div></div>
