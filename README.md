@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8" />
@@ -67,9 +66,10 @@
       <h1 class="title">🎂 Happy Birthday, <span id="name">My Love</span>!</h1>
       <p class="subtitle">wish you the happiest of birthdays 💜</p>
 
-      <video controls autoplay muted style="width:100%">
-  <source src="human music.mp4" type="video/mp4">
-</video>
+      <audio controls autoplay loop style="width:100%">
+        <source src="human music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
 
       <div class="countdown" id="countdown">
         <div class="box"><div class="num" id="days">--</div><div class="label">Days</div></div>
@@ -107,9 +107,10 @@
     <section class="panel">
       <h2>Memories & Photos</h2>
       <div class="grid">
-        <img src="https://images.unsplash.com/photo-1529336953121-ad3c0f42f0ca?q=80&w=1200&auto=format&fit=crop" style="width:100%; border-radius:var(--radius)"/>
-        <img src="https://images.unsplash.com/photo-1512003867696-6d5644166b18?q=80&w=1200&auto=format&fit=crop" style="width:100%; border-radius:var(--radius)"/>
-        <img src="https://images.unsplash.com/photo-1478147427282-58a87a120781?q=80&w=1200&auto=format&fit=crop" style="width:100%; border-radius:var(--radius)"/>
+        <img src="catphoto1.jpeg" style="width:100%; border-radius:var(--radius)"/>
+        <img src="catphoto2.jpeg" style="width:100%; border-radius:var(--radius)"/>
+        <img src="catphoto3.jpeg" style="width:100%; border-radius:var(--radius)"/>
+        <img src="catphoto4.jpeg" style="width:100%; border-radius:var(--radius)"/>
       </div>
     </section>
 
